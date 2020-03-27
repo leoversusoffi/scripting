@@ -8,7 +8,7 @@ def main():
 
   p = angr.Project("angr2")
   st = p.factory.full_init_state(
-    args=['./angrmanagement'],
+    args=['./angr2'],
     add_options=angr.options.unicorn,
     stdin=flag,
   )
