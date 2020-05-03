@@ -1,0 +1,16 @@
+#!/usr/bin/python
+import rsa
+import gmpy
+import base64
+
+c = base64.b64decode("ZThvUURpaHNta3ZqVDNzWmUrRUU4bHdOdkJFc0ZlZ1lGNitPT0ZPaVI2Z010TVp4eGJhL2JJZ0xVRDhwVjN5RWYwZ09PZkh1QjViQzN2UW1vN2JFNFBjSUtmcEZHWkJB")
+
+e = 65537
+p = 398075086424064937397125500550386491199064362342526708406385189575946388957261768583317
+q = 472772146107435302536223071973048224632914695302097116459852171130520711256363590397527
+n = p * q
+
+d = int(gmpy.invert(e, (p-1)*(q-1)))
+pk = rsa.PrivateKey(n, e, d, p, q)
+plain = rsa.decrypt(base64.b64decode(c), pk)
+print(plain)
